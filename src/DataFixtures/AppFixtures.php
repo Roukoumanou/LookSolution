@@ -25,10 +25,12 @@ class AppFixtures extends Fixture
         $user = new User();
         // On crée un administrateur
         $user->setEmail("admin@test.com")
+        ->setPassword($this->encoder->encodePassword($user, "password"))
              ->setRoles(["ROLE_ADMIN"])
              ->setFirstName("Look")
              ->setLastName("Solution")
-             ->setPassword($this->encoder->encodePassword($user, "password"));
+             ->isVerified(true)
+             ;
 
         $manager->persist($user);
 
