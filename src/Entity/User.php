@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Cet email est déja membre de LookSolution")
  */
 class User implements UserInterface
 {
@@ -54,12 +54,14 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank()
+     *
      * @var \DateTime
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     *
      * @var \DateTime
      */
     private $updatedAt;
@@ -73,7 +75,7 @@ class User implements UserInterface
     {
         if (empty($this->createdAt)) {
             $this->createdAt = new \DateTime();
-        }else{
+        } else {
             $this->updatedAt = new \DateTime();
         }
     }
