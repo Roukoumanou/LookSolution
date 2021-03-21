@@ -12,6 +12,7 @@
       <th scope="col">Nom prénom</th>
       <th scope="col">Date d'inscription</th>
       <th scope="col">Status</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +28,7 @@
                     Non Vérifié
                 {% endif %}
             </td>
+            <td><a class="btn btn-outline-warning" href="{{ path('edit_user', {id: user.id})}}">Modifier</a></td>
         </tr>
     {% endfor %}
     
