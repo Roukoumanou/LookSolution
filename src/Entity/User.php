@@ -36,18 +36,31 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(
+     *      min=8,
+     *      minMessage="Le mot de passe est court !")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min=2,
+     *      max=255,
+     *      minMessage="Le nom est court !",
+     *      maxMessage="Le nom est trop long !")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min=2,
+     *      max=255,
+     *      minMessage="Le prénom est court !",
+     *      maxMessage="Le prénom est trop long !")
      */
     private $lastName;
 
@@ -227,5 +240,10 @@ class User implements UserInterface
         $this->isVerified = $isVerified;
 
         return $this;
+    }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->isVerified;
     }
 }

@@ -1,0 +1,17 @@
+{% extends 'admin_home/base.html.twig' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block body %}
+
+    <div class="card text-white bg-secondary m-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <a class="btn btn-outline-primary" href="{{ path('edit_category', {id: category.id})}}">
+                Modifier
+            </a>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">{{ category.Name|title }}</h4>
+        </div>
+    </div>
+{% endblock %}
