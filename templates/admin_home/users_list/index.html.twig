@@ -1,0 +1,37 @@
+{% extends 'admin_home/base.html.twig' %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block body %}
+    <h1>Utilisateurs</h1>
+
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Identifiant</th>
+      <th scope="col">Nom prénom</th>
+      <th scope="col">Date d'inscription</th>
+      <th scope="col">Status</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+        <tr class="table-active">
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.fullName }}</td>
+            <td>{{ user.createdAt | date('d-m-Y') }}</td>
+            <td>
+                {% if user.isVerified == true %}
+                    Vérifié
+                {% else %}
+                    Non Vérifié
+                {% endif %}
+            </td>
+            <td><a class="btn btn-outline-warning" href="{{ path('edit_user', {id: user.id})}}">Modifier</a></td>
+        </tr>
+    {% endfor %}
+    
+  </tbody>
+</table>
+{% endblock %}

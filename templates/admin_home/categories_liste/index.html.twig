@@ -1,0 +1,33 @@
+{% extends 'admin_home/base.html.twig' %}
+
+{% block title %}Liste des catégories{% endblock %}
+
+{% block body %}
+<h1>Liste des catégories</h1>
+
+    <a class="btn btn-outline-warning" href="{{ path('new_category') }}">
+        Ajouter une categorie
+    </a>
+
+    <div class="row">
+        {% for category in categories %}
+            <div class="col-4">
+                        <div class="col-4 card text-white bg-secondary m-3" style="max-width: 20rem;">
+                            <div class="card-header">
+                                <a class="btn btn-outline-primary" href="{{ path('edit_category', {id: category.id})}}">
+                                    Modifier
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">{{ category.Name|title }}</h4>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-outline-success" href="{{ path('show_category', {id: category.id})}}">
+                                    Détails
+                                </a>
+                            </div>
+                        </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

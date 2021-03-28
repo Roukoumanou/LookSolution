@@ -1,0 +1,11 @@
+{% extends 'admin_home/base.html.twig' %}
+
+{% block title %}Nouvelle Catégorie{% endblock %}
+
+{% block body %}
+<h1>Nouvelle catégorie</h1>
+    {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        <button type="submit" class="btn btn-outline-primary">Enrégistrer</button>
+    {{ form_end(form) }}
+{% endblock %}

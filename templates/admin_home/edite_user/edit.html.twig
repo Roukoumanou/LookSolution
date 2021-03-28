@@ -1,0 +1,14 @@
+{% extends 'admin_home/base.html.twig' %}
+
+{% block title %}{{ user.fullName }}{% endblock %}
+
+{% block body %}
+    <h1>{{ user.fullName }}</h1>
+    {{ form_start(form) }}
+        {{ form_row(form.firstName) }}
+        {{ form_row(form.lastName) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.roles) }}
+        <button class="btn btn-outline-success">Enrégistrer</button>
+    {{ form_end(form) }}
+{% endblock %}

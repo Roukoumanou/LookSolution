@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Cet email est déja membre de LookSolution")
  */
 class User implements UserInterface
 {
@@ -36,30 +36,45 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(
+     *      min=8,
+     *      minMessage="Le mot de passe est court !")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min=2,
+     *      max=255,
+     *      minMessage="Le nom est court !",
+     *      maxMessage="Le nom est trop long !")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min=2,
+     *      max=255,
+     *      minMessage="Le prénom est court !",
+     *      maxMessage="Le prénom est trop long !")
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank()
+     *
      * @var \DateTime
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     *
      * @var \DateTime
      */
     private $updatedAt;
@@ -73,7 +88,7 @@ class User implements UserInterface
     {
         if (empty($this->createdAt)) {
             $this->createdAt = new \DateTime();
-        }else{
+        } else {
             $this->updatedAt = new \DateTime();
         }
     }
@@ -225,5 +240,10 @@ class User implements UserInterface
         $this->isVerified = $isVerified;
 
         return $this;
+    }
+
+    public function getIsVerified(): ?bool
+    {
+        return $this->isVerified;
     }
 }

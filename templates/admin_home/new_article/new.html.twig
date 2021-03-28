@@ -1,0 +1,18 @@
+{% extends 'admin_home/base.html.twig' %}
+
+{% block title %}Nouveau article{% endblock %}
+
+{% block body %}
+<h1>Ajouter un nouveau Article</h1>
+
+    {{ form_start(form) }}
+
+        {{ form_row(form.title) }}
+        {{ form_row(form.category) }}
+        {{ form_row(form.content) }}
+        {{ form_row(form.coverUrl) }}
+        {{ form_row(form.status) }}
+
+        <button class="btn btn-success">Enrégistrer</button>
+    {{ form_end(form) }}
+{% endblock %}

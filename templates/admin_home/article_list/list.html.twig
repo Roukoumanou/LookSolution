@@ -1,0 +1,49 @@
+{% extends 'admin_home/base.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block body %}
+    <h1>Liste des articles</h1>
+
+    <a class="btn btn-outline-warning" href="{{ path('new_article') }}">
+        Ajouter un article
+    </a>
+
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-4">
+                        <div class="col-4 card text-white bg-secondary m-3" style="max-width: 20rem;">
+                            <div class="card-header">
+                                <a class="btn btn-block btn-outline-primary" href="{{ path('edit_article', {id: article.id})}}">
+                                    Modifier
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">{{ article.title|title }}</h4>
+                                <span 
+                                    {% if article.status == "attente" %}
+                                        class="text-warning"
+                                    {% elseif article.status == "brouillon" %}
+                                        class="text-danger"
+                                    {% else %}
+                                        class="text-success"
+                                    {% endif %}>
+                                    
+                                    {{ article.status|upper }}
+                                </span>
+
+                                <a href="{{ path('show_article', {id: article.id})}}">
+                                    <img src="{{ article.coverUrl }}" class="img-thumbnail" alt="image mise en avant {{ article.title }}">
+                                </a>
+                            </div>
+                            
+                            <div class="card-footer">
+                                <a class="btn btn-block btn-outline-success" href="{{ path('show_article', {id: article.id})}}">
+                                    Lire
+                                </a>
+                            </div>
+                        </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
